@@ -1,0 +1,10 @@
+/* buttons and hover */
+$redButton: #FF0000;
+$greenHover: #00FF00;
+
+button {
+    color: $redButton;
+    &:hover {
+      color: $greenHover;
+    }
+}
