@@ -1,0 +1,9 @@
+/* nested class */
+$bodyColor: #3D3D3D;
+$redClassColor: #FF0000;
+body {
+    color: $bodyColor;
+    .red {
+      color: $redClassColor;
+    }
+}
