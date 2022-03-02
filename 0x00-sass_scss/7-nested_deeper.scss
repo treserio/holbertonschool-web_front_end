@@ -1,15 +1,10 @@
 /* nested and nested of class */
-$p14: 14px;
-$p16: 16px;
-$p12: 12px;
-
-
 body {
-    font-size: $p14;
+    font-size: 14px;
     h1 {
-      font-size: $p16;
+      font-size: 16px;
       &.smaller {
-        font-size: $p12;
+        font-size: 12px;
       }
     }
 }
