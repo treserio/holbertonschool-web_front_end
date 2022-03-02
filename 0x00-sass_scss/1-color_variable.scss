@@ -1,6 +1,10 @@
 /* Write a Sass file that assigns the text color #3D3D3D to the HTML tags body and p. */
 $bpColor: #3D3D3D;
 
-b, p {
+b {
+    color: $bpColor;
+}
+
+p {
     color: $bpColor;
 }
