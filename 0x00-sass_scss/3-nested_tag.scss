@@ -1,11 +1,8 @@
 /* nesting */
-$zeroPx: 0px;
-$tenPx: 10px;
-
 body {
-    margin: $zeroPx;
-    padding: $zeroPx;
+    margin: 0px;
+    padding: 0px;
     p {
-        margin: $tenPx;
+        margin: 10px;
     }
 }
