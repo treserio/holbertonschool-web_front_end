@@ -1,0 +1,11 @@
+/* nesting */
+$zeroPx: 0px;
+$tenPx: 10px;
+
+body {
+    margin: $zeroPx;
+    padding: $zeroPx;
+    p {
+        margin: $tenPx;
+    }
+}
