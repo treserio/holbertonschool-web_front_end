@@ -1,0 +1,8 @@
+// @each $my_item in $my_list
+@import "11-photos";
+
+@each $img in $list-names {
+    .photo-#{$img} {
+        background-image: "photos/" + $img;
+    }
+}
