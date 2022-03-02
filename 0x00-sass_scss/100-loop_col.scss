@@ -1,0 +1,6 @@
+// @for 1 through 4 set col- and width % 100
+@for $num from 1 through 4 {
+    .col-#{$num} {
+        width: 100% / $num;
+    }
+}

@@ -1,4 +1,4 @@
-// @each $my_item in $my_list
+// @for 1 through 5 set headers
 @for $num from 1 through 5 {
     h#{$num} {
         font-size: $num + px;
