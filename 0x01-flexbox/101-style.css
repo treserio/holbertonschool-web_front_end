@@ -1,8 +1,10 @@
 :root {
-    --biggest: 6rem;
-    --mid: calc(var(--biggest) * .55);
-    --small: calc(var(--biggest) * .2);
-    --biggest-box: 11rem;
+    --big: 6rem;
+    --mid: calc(var(--big) * .55);
+    --small: calc(var(--big) * .2);
+    --big-height: 11rem;
+    --mid-height: calc(var(--big-height) * .60);
+    --sm-height: calc(var(--big-height) * .30);
 }
 
 html {
@@ -25,35 +27,35 @@ html {
 
 .box1 {
     font-size: var(--small);
-    height: calc(var(--biggest-box) * .30);
+    height: var(--sm-height);
     flex: 1;
     background-color: seagreen;
 }
 
 .box2 {
     font-size: var(--mid);
-    height: calc(var(--biggest-box) * .60);
+    height: var(--mid-height);
     flex: 1.8;
     background-color: navy;
 }
 
 .box3 {
-    font-size: var(--biggest);
-    height: var(--biggest-box);
+    font-size: var(--big);
+    height: var(--big-height);
     flex: 2.7;
     background-color: darkslategrey;
 }
 
 .box4 {
     font-size: var(--mid);
-    height: calc(var(--biggest-box) * .60);
+    height: var(--mid-height);
     flex: 1.8;
     background-color: plum;
 }
 
 .box5 {
     font-size: var(--small);
-    height: calc(var(--biggest-box) * .30);
+    height: var(--sm-height);
     flex: 1;
     background-color: orangered;
 }
