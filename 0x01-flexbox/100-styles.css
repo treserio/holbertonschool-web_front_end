@@ -576,7 +576,7 @@
         font-size: var(--font-size-x-large);
     }
 
-    .post-content img {
+    .post-content .img-caption {
         margin: 1rem 0;
         padding: 0 .5rem;
         font-size: var(--font-size-small);
