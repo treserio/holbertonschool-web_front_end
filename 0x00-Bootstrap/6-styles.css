@@ -1,0 +1,49 @@
+body > :first-child {
+	border-bottom: 1px solid #E0003C !important;
+}
+
+.btn-primary {
+	background-color: #E0003C;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #BC1340 !important;
+	color: white !important;
+}
+
+.btn-outline-primary {
+	border-color: #E0003C;
+	color: #E0003C;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
+	background-color: #BC1340 !important;
+	color: #fff !important;
+}
+
+[class^="card"] {
+	border-color: #E0003C;
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.card-header {
+	background-color: #E0003C;
+	color: white;
+}
+
+.text-muted {
+	color: #8C8C8C;
+}
+
+a, a:hover, a:focus {
+	color: #E0003C !important;
+}
+
+a.text-dark:focus, a.text-dark:hover {
+    color: #E0003C !important;
+}
+
+.text-muted {
+	color: #8C8C8C;
+}
