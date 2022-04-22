@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <script>
+            createFamilyTree();
+            addNewMember('Guillaume', 'Salva');
+            addNewMember('Arielle', 'Snizt');
+            addNewMember('Fanette', 'Snizt');
+            addNewMember('Gerard', 'Snizt');
+            addNewMember('Victor', 'Salva');
+
+            function createFamilyTree() {
+            const table = `<table>
+            <thead>
+                <tr>
+                    <th>Firstname</th><th>Lastname</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            </table>`;
+
+            $('body').append(table);
+            }
+
+            function addNewMember(firstName, lastName) {
+                $('tbody').append(`<tr><td>${firstName}</td><td>${lastName}</td><td>(x)</td></tr>`);
+                $('tbody td').last()
+                    .css('background-color', 'orange')
+                    .click(function () { $(this).parent().remove() });
+            }
+        </script>
+    </body>
+
+</html>

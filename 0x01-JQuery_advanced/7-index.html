@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <script>
+            createFamilyTree();
+            createForm();
+
+            function createFamilyTree() {
+            const table = `<table>
+            <thead>
+                <tr>
+                    <th>Firstname</th><th>Lastname</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            </table>`;
+
+            $('body').append(table);
+            }
+
+            function addNewMember(firstName, lastName, position) {
+                if (position == 'after') {
+                    $('tbody').append(`<tr><td>${firstName}</td><td>${lastName}</td><td>(x)</td></tr>`);
+                } else {
+                    $('tbody').prepend(`<tr><td>${firstName}</td><td>${lastName}</td><td>(x)</td></tr>`);
+                }
+                $('tbody td:nth-of-type(3)')
+                        .css('background-color', 'orange')
+                        .click(function () { $(this).parent().remove() });
+            }
+
+            function createForm() {
+                $('table').before(
+                    `<form>
+                        <input type="text" id="firstName">
+                        <input type="text" id="lastName">
+                        <select id="befor-or-after">
+                            <option value="before">Before</option>
+                            <option value="after">After</option>
+                        </select>
+                        <input type="submit">
+                    </form>`
+                );
+            }
+
+            $('form').submit((e) => {
+                addNewMember(
+                    $('input').first().val(),
+                    $('input:nth-of-type(2)').val(),
+                    $('select').val()
+                )
+                e.preventDefault();
+            });
+        </script>
+    </body>
+
+</html>

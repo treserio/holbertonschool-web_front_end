@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <script>
+            createFamilyTree();
+            replaceFamilyTree();
+
+            function createFamilyTree() {
+                $('body').append('<table></table>');
+                $('table').append('<thead></thead>');
+                $('thead').append('<tr></tr>');
+                $('tr').append('<th></th>', '<th></th>');
+                $('th:nth-of-type(1)').text('Firstname');
+                $('th:nth-of-type(2)').text('Lastname');
+                $('table').append('<tbody></tbody>');
+                $('tbody').append('<tr></tr>', '<tr></tr>', '<tr></tr>');
+                $('tbody tr').append('<td></td>', '<td></td>');
+                $('tbody tr td').each(function(idx, ele) {
+                    console.log('index:', idx);
+                    if (idx % 2) {
+                        $(ele).text('Salva');
+                    } else {
+                        switch(idx) {
+                            case 0: $(ele).text('Guillaume');
+                                break;
+                            case 2: $(ele).text('Paulette');
+                                break;
+                            case 4: $(ele).text('Antoine');
+                                break;
+                        }
+                    }
+                });
+            }
+
+            function replaceFamilyTree() {
+                $('tbody').html('<tr><td>Gerard</td><td>Bonissa</td><tr>');
+            }
+        </script>
+    </body>
+
+</html>
