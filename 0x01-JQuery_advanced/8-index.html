@@ -53,12 +53,13 @@
 
 			function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
 				$('ul:nth-of-type(2)').remove();
-				$('body').after().append('<ul class=pageSelect></ul>');
+                setTimeout(() => {}, 200);
+				$('body').append('<ul class=pageSelect></ul>');
 				for (let i = 1; i < (numberOfItems / itemsPerPage); i++) {
 					$('ul').last().append(`<li>${i}</li>`);
 					$('li').last()
                         .click(function () {
-                            queryWikipedia($('input').first().val(), $(this).text() * 10);
+                            queryWikipedia($('input').first().val(), $(this).text() * itemsPerPage);
 					    	// console.log(`clicked: ${$(this).text()}`);
 					    })
                         .css({

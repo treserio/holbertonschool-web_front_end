@@ -6,6 +6,9 @@
         <title>Task 9</title>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		<style>
+			.loading {opacity: 0.4}
+		</style>
     </head>
 
     <body>
@@ -36,6 +39,7 @@
 
             function queryWikipedia(search, offset = 0) {
 				$('ul').first().html('');
+				displayLoading(true);
                 $.ajax({
                     type: 'GET',
                     url: `https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=${search}&format=json&sroffset=${offset}`,
@@ -47,24 +51,25 @@
                             addNewArticle(page.pageid, page.title, page.snippet);
                         }
 						buildPagination(res.query.searchinfo.totalhits, 10, offset);
+                        setTimeout(()=> {displayLoading(false)}, 500);
                     }
                 });
             }
 
 			function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
-				$('ul:nth-of-type(2)').remove();
-				$('body').after().append('<ul class=pageSelect></ul>');
+				$('.pageSelect').remove();
+				$('body').append('<ul class=pageSelect></ul>');
 				for (let i = 1; i < (numberOfItems / itemsPerPage); i++) {
 					$('ul').last().append(`<li>${i}</li>`);
 					$('li').last()
                         .click(function () {
-                            queryWikipedia($('input').first().val(), $(this).text() * 10);
+                            queryWikipedia($('input').first().val(), $(this).text() * itemsPerPage);
 					    	// console.log(`clicked: ${$(this).text()}`);
 					    })
                         .css({
                             'cursor': 'pointer',
                             'font-size': '10px',
-                            'margin-left': '2px'
+                            'margin-left': '4px'
                         });
 				}
 				if (currentOffset) {
@@ -78,6 +83,15 @@
                     'justify-content': 'space-between', 
                     'list-style-type': 'none'
                 });
+			}
+
+			function displayLoading(loading) {
+				if (loading) {
+					$('ul').first().wrap('<div class=loading></div>');
+				} else {
+                    // console.log('loading?:', $('ul').first().parent().hasClass('loading'));
+					$('ul').first().unwrap();
+				}
 			}
         </script>
     </body>
