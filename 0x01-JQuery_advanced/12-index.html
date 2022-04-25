@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 11</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		<style>
+			
+		</style>
+    </head>
+
+    <body>
+        <script>
+			buildForm();
+			listPosts();
+			function addPostRow(data) {
+				if (Array.isArray(data)) {
+					for (post of data) {
+						$('body').append(`<p><span>Post created with id ${post.id}, title: ${post.title}, author: ${post.author}</span></p>`);
+					}
+				} else {
+					$('body').append(`<p><span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span></p>`);
+				}
+			}
+
+			function listPosts() {
+				$.get('http://localhost:3000/posts', (res) => {
+					addPostRow(res);
+				})
+					.fail(() => {alert('Server Error')});
+			}
+
+			function buildForm() {
+				$('body').append(`<form>
+					<div>
+						<label for="author">Author</label>
+						<input type="text" id="author">
+					</div>
+					<div>
+						<label for="title">Title</label>
+						<textarea id="title"></textarea>
+					</div>
+					<input type="submit">
+				</form>
+				`);
+				$('form').submit((action) => {
+					sendForm();
+					action.preventDefault();
+				});
+			}
+
+			function sendForm() {
+				$('form').after('<div class="api-text">About to send the query to the API</div>');
+				const data = {
+					author: $('input').first().val(),
+					title: $('textarea').val()
+				}
+				$.post('http://localhost:3000/posts', data, (res) => {
+					// console.log(res);
+					addPostRow(res);
+				})
+					.fail(() => {alert('Error sending the POST query');});
+			}
+        </script>
+		
+    </body>
+
+</html>

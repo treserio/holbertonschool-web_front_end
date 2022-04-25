@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Task 9</title>
+        <title>Task 10</title>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		<style>
@@ -13,7 +13,19 @@
 
     <body>
         <script>
-           
+			listPosts();
+			function addPostRow(data) {
+				for (post of data) {
+					$('body').append(`<p><span>Post created with id ${post.id}, title: ${post.title}, author: ${post.author}</span></p>`);
+				}
+			}
+
+			function listPosts() {
+				$.get('http://localhost:3000/posts', (res) => {
+					addPostRow(res);
+				})
+					.fail(() => {alert('Server Error')});
+			}
         </script>
     </body>
 
