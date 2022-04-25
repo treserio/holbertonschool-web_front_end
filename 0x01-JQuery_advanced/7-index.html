@@ -3,62 +3,50 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Task 0</title>
+        <title>Task 7</title>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <script>
-            createFamilyTree();
-            createForm();
+            createSearchForm();
 
-            function createFamilyTree() {
-            const table = `<table>
-            <thead>
-                <tr>
-                    <th>Firstname</th><th>Lastname</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-            </table>`;
-
-            $('body').append(table);
-            }
-
-            function addNewMember(firstName, lastName, position) {
-                if (position == 'after') {
-                    $('tbody').append(`<tr><td>${firstName}</td><td>${lastName}</td><td>(x)</td></tr>`);
-                } else {
-                    $('tbody').prepend(`<tr><td>${firstName}</td><td>${lastName}</td><td>(x)</td></tr>`);
-                }
-                $('tbody td:nth-of-type(3)')
-                        .css('background-color', 'orange')
-                        .click(function () { $(this).parent().remove() });
-            }
-
-            function createForm() {
-                $('table').before(
-                    `<form>
-                        <input type="text" id="firstName">
-                        <input type="text" id="lastName">
-                        <select id="befor-or-after">
-                            <option value="before">Before</option>
-                            <option value="after">After</option>
-                        </select>
+            function createSearchForm() {
+                $('body').append(`<form>
+                        <input type="text">
                         <input type="submit">
-                    </form>`
-                );
+                    </form>
+                    <ul></ul>`
+                )
             }
 
             $('form').submit((e) => {
-                addNewMember(
-                    $('input').first().val(),
-                    $('input:nth-of-type(2)').val(),
-                    $('select').val()
-                )
+                queryWikipedia($('input').first().val())
                 e.preventDefault();
             });
+
+            function addNewArticle(id, title, snippet) {
+                $('ul').append(`<li>
+                    <p><span>${id} - </span><b>${title}</b></p>
+                    <p>${snippet}</p>
+                </li>
+                `)
+            }
+
+            function queryWikipedia(search) {
+                $.ajax({
+                    type: 'GET',
+                    url: `https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=${search}&format=json`,
+                    dataType: 'json',
+                    success: function (res) {
+                        search = res.query.search;
+                        for(page of search) {
+                            addNewArticle(page.pageid, page.title, page.snippet);
+                        }
+                    }
+                });
+            }
         </script>
     </body>
 
