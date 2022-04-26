@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Task 11</title>
+        <title>Task 12</title>
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		<style>
@@ -18,11 +18,21 @@
 			function addPostRow(data) {
 				if (Array.isArray(data)) {
 					for (post of data) {
-						$('body').append(`<p><span>Post created with id ${post.id}, title: ${post.title}, author: ${post.author}</span></p>`);
+						$('body').append(`<p id=row-${post.id}>
+							<span>(delete)</span>
+							<span>Post created with id ${post.id}, title: ${post.title}, author: ${post.author}</span>
+							</p>`);
 					}
 				} else {
-					$('body').append(`<p><span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span></p>`);
+					$('body').append(`<p id=row-${data.id}>
+						<span>(delete)</span>
+						<span>Post created with id ${data.id}, title: ${data.title}, author: ${data.author}</span>
+						</p>`);
 				}
+				$('span:nth-of-type(odd)').click(function () {
+					// console.log($(this).parent().attr('id').substring(4));
+					deletePost($(this).parent().attr('id').substring(4));
+				})
 			}
 
 			function listPosts() {
@@ -62,6 +72,17 @@
 					addPostRow(res);
 				})
 					.fail(() => {alert('Error sending the POST query');});
+			}
+
+			function deletePost(id) {
+				$.ajax({
+					url: `http://localhost:3000/posts/${id}`,
+					type: 'DELETE',
+					success: function(res) {
+						$(`#row-${id}`).remove();
+					}
+				})
+					.fail(() => {alert('Post was not deleted')});
 			}
         </script>
 		
