@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Task 3</title>
+        <script src="3-idx.js"></script>
+    </head>
+
+    <body>
+        <div class="form">
+            <input type="text" id="firstname" placeholder="Firstname">
+            <input type="text" id="email" placeholder="Email">
+            <button onclick="setCookies()">Log me in</button>
+            <h1>Cookies</h1>
+            <button onclick="showCookies();">Show the cookies</button>
+        </div>
+        <div class="welcome" style="display:none">
+            <h1>Welcome FIRSTNAME <a href=# onclick="deleteCookiesAndShowForm()"><i>(logout)</i></a></h1>
+        </div>
+    </body>
+
+</html>
