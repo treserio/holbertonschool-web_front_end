@@ -4,6 +4,8 @@ function setCookies() {
   let expires = new Date(Date.now() + 10000 * 86400);
   document.cookie = `firstname=${firstname};SameSite=Lax;expires=${expires.toGMTString()}`;
   document.cookie = `email=${email};SameSite=Lax;expires=${expires.toGMTString()}`;
+  elem = document.getElementsByClassName('welcome')[0].firstElementChild;
+  elem.innerHTML = `Welcome ${firstname} <a href=# onclick="deleteCookiesAndShowForm()"><i>(logout)</i></a>`;
   showForm();
 }
 
@@ -42,9 +44,13 @@ function hideForm() {
   showForm();
 }
 
-// Welcome FIRSTNAME (logout)
 function showWelcomeMessageOrForm() {
-  document.body.innerHTML = '';
+    // check for cookies, if they don't exist hideForm
+    if (getCookie('firstname') != null && getCookie('email') != null) {
+      hideForm();
+    }
+    elem = document.getElementsByClassName('welcome')[0].firstElementChild;
+    elem.innerHTML = `Welcome ${getCookie('firstname')} <a href=# onclick="deleteCookiesAndShowForm()"><i>(logout)</i></a>`;
 }
 
 function deleteCookiesAndShowForm() {
@@ -55,9 +61,6 @@ function deleteCookiesAndShowForm() {
 }
 
 window.onload = () => {
-  // check for cookies, if they don't exist hideForm
-  if (getCookie('firstname') != null && getCookie('email') != null) {
-    hideForm();
-  }
+  showWelcomeMessageOrForm();
 }
 
