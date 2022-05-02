@@ -8,7 +8,10 @@ function setCookies() {
 
 function showCookies() {
   const par = document.createElement('p');
-  par.innerHTML = `Cookies: ${document.cookie}`;
-  console.log(document.cookie);
+  par.innerHTML = `Email: ${getCookie('email')} - Firstname: ${getCookie('firstname')}`;
   document.body.append(par);
+}
+
+function getCookie(name) {
+  return `${document.cookie}`.split(`${name}=`)[1].split(';')[0];
 }
