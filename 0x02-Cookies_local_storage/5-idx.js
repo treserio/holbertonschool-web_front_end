@@ -6,7 +6,7 @@ let availableItems = [
 ];
 
 function addItemToCart(item) {
-  console.log(item);
+  // console.log(item);
   localStorage.setItem(item, true);
 }
 
@@ -22,7 +22,7 @@ function createStore() {
 }
 
 function displayCart() {
-  if (localStorage) {
+  if (localStorage.length) {
     let p = document.createElement('p');
     p.innerText = `You previously had ${localStorage.length} items in your cart`;
     document.body.append(p);
