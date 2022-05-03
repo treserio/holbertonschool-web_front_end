@@ -50,7 +50,6 @@ window.onload = () => {
   } else {
     createStore();
     displayCart();
-    getCartFromStorage();
   }
 }
 
